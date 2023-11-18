@@ -1,17 +1,37 @@
 import axios from "axios";
 
-export default async function imageGen(query: string) {
+export default async function imageGen(
+  query: string,
+  apiType: string = "default"
+) {
+  let apiUrl =
+    "https://xdwvg9no7pefghrn.us-east-1.aws.endpoints.huggingface.cloud";
+  const keys = {
+    default: import.meta.env.VITE_HUGGINGFACE_ASSIGNMENT_KEY,
+    "comic-diffusion": import.meta.env.VITE_HUGGINGFACE_KEY,
+  };
+  let apiToken = keys.default;
+
+  if (apiType !== "default") {
+    if (apiType === "comic-diffusion") {
+      apiUrl =
+        "https://api-inference.huggingface.co/models/ogkalu/Comic-Diffusion";
+      apiToken = keys["comic-diffusion"];
+    }
+  }
+
   const data = {
     inputs: query,
   };
 
+  console.log(apiUrl, data)
   const response = await fetch(
-    "https://api-inference.huggingface.co/models/ogkalu/Comic-Diffusion",
+    apiUrl,
     {
       headers: {
-        // Accept: "image/png",
-        Authorization: `Bearer ${import.meta.env.VITE_HUGGINGFACE_KEY}`,
-        // "Content-Type": "application/json",
+        Accept: "image/png",
+        Authorization: `Bearer ${apiToken}`,
+        "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(data),

@@ -7,10 +7,18 @@ import html2canvas from "html2canvas";
 import Dialog from "./components/Dialog";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import imageShare from "./utils/imageShare";
+import Select from "react-select";
 
 export default function Create() {
+  // API Selector State (default, comic-diffusion)
+  const [apiType, setApiType] = useState("default");
+  const options = [
+    { value: "default", label: "default" },
+    { value: "comic-diffusion", label: "comic-diffusion" },
+  ];
+
   // Dialog state
   const [open, setOpen] = useState(false);
   const [panelNumber, setPanelNumber] = useState(0);
@@ -65,13 +73,13 @@ export default function Create() {
     });
 
     const canvas = await html2canvas(comicStripRef.current, {
-      scale: 2,
+      scale: 4,
     });
     const dataURL = canvas
       .toDataURL("image/png")
       .replace("data:image/png;base64,", "");
     imageShare(dataURL).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res) {
         toast.success("Image uploaded successfully! Redirecting...", {
           position: "top-right",
@@ -103,6 +111,10 @@ export default function Create() {
     });
   };
 
+  const handleApiTypeChange = (event) => {
+    setApiType(event.value);
+  };
+
   return (
     <Box
       sx={{
@@ -113,19 +125,37 @@ export default function Create() {
         },
       }}
     >
-      <Link to="/">
-        <Typography
-          level="body-xs"
+      {/* <Link to="/"> */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: "1.5rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          zIndex: 10,
+          color: "#000",
+          minWidth: 275,
+        }}
+      >
+        <Typography level="body-sm">Choose API</Typography>
+        <Box
           sx={{
-            position: "absolute",
-            top: "2rem",
-            left: "50%",
-            transform: "translateX(-50%)",
+            flex: 1,
+            fontSize: "14px",
           }}
         >
-          Dashtoon Assignment
-        </Typography>
-      </Link>
+          <Select
+            options={options}
+            defaultValue={{ label: "default", value: "default" }}
+            onChange={handleApiTypeChange}
+          />
+        </Box>
+      </Box>
+
+      {/* </Link> */}
 
       <Container
         sx={{
@@ -139,6 +169,7 @@ export default function Create() {
           comicGridRef={comicStripRef}
           setOpen={setOpen}
           setPanelNumber={setPanelNumber}
+          apiType={apiType}
         />
       </Container>
 
@@ -177,11 +208,7 @@ export default function Create() {
         </Box>
       </Box>
 
-      <Dialog
-        open={open}
-        setOpen={setOpen}
-        panelNumber={panelNumber}
-      />
+      <Dialog open={open} setOpen={setOpen} panelNumber={panelNumber} apiType={apiType} />
       <ToastContainer
         position="top-right"
         autoClose={2000}

@@ -16,8 +16,14 @@ interface DialogProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   panelNumber: number;
+  apiType: string;
 }
-export default function Dialog({ open, setOpen, panelNumber }: DialogProps) {
+export default function Dialog({
+  open,
+  setOpen,
+  panelNumber,
+  apiType = "default",
+}: DialogProps) {
   const { comicData, setComicData } = useContext(AppContext);
   const [apiCallStatus, setApiCallStatus] = useState<string | null>(null);
   const [png, setPng] = useState();
@@ -25,9 +31,9 @@ export default function Dialog({ open, setOpen, panelNumber }: DialogProps) {
   const imageGenerationHandler = async (query: string) => {
     setApiCallStatus("loading");
 
-    imageGen(query)
+    imageGen(query, apiType)
       .then((res) => {
-        console.log("new res", res);
+        // console.log("new res", res);
 
         let newData: ComicStripType = { ...comicData };
         newData[panelNumber].image = res as string;

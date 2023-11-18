@@ -60,6 +60,9 @@ export default function NoteInfo() {
           <Typography id="modal-desc" textColor="text.tertiary">
             <List>
               <ListItem>
+                <ListItemDecorator>🧅</ListItemDecorator>Added an API Selector for selecting alternative Huggingface Model API for testing if the default one is not working.
+              </ListItem>
+              <ListItem>
                 <ListItemDecorator>🧅</ListItemDecorator>Due to the short time
                 frame (2 days), the assignment solution is mainly focused on the
                 main functionality.
@@ -67,7 +70,7 @@ export default function NoteInfo() {
               <ListItem>
                 <ListItemDecorator>🧅</ListItemDecorator>Many extra feature
                 additions and improvements could have been done if time
-                persisted.
+                persisted. Endsemesters from 19 Nov.
               </ListItem>
             </List>
           </Typography>

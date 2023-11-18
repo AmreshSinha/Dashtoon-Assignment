@@ -19,7 +19,7 @@ export default function ComicGrid({
 
   const layouts = {
     0: [4.5, 7.5, 7.5, 4.5, 3.8, 4.4, 3.8, 4.1, 3.8, 4.1],
-    1: [4, 4, 4, 4, 8, 4, 4, 4, 8, 4]
+    1: [4, 4, 4, 4, 8, 4, 4, 4, 8, 4],
   };
   return (
     <Box
@@ -36,6 +36,7 @@ export default function ComicGrid({
         {layouts[0].map((item, index) => {
           return (
             <ItemMod
+              key={index}
               setOpen={setOpen}
               panelNumber={index + 1}
               setPanelNumber={setPanelNumber}
