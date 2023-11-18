@@ -89,8 +89,15 @@ export default function Dialog({ open, setOpen, panelNumber }: DialogProps) {
           <form
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();
-              if ((event.target as any).prompt.value !== ("" || undefined || null)) {
+              if (
+                (event.target as any).prompt.value !== ("" || undefined || null)
+              ) {
                 imageGenerationHandler((event.target as any).prompt.value);
+                let newData = { ...comicData };
+                newData[panelNumber].prompt = (
+                  event.target as any
+                ).prompt.value;
+                setComicData(newData);
               }
             }}
           >
@@ -103,6 +110,11 @@ export default function Dialog({ open, setOpen, panelNumber }: DialogProps) {
                   id="prompt"
                   autoFocus
                   required
+                  defaultValue={
+                    comicData[panelNumber] && comicData[panelNumber].prompt
+                      ? comicData[panelNumber].prompt!
+                      : undefined
+                  }
                 />
               </FormControl>
               <Button type="submit" disabled={apiCallStatus ? true : false}>
@@ -114,11 +126,13 @@ export default function Dialog({ open, setOpen, panelNumber }: DialogProps) {
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               if (
-                (event.target as any).speechBubble.value !== ("" || null || undefined)
+                (event.target as any).speechBubble.value !==
+                ("" || null || undefined)
               ) {
-                let newData = comicData;
-                newData[panelNumber].speechBubble =
-                (event.target as any).speechBubble.value;
+                let newData = { ...comicData };
+                newData[panelNumber].speechBubble = (
+                  event.target as any
+                ).speechBubble.value;
                 setComicData(newData);
                 toast.success("Speech Bubble Updated!");
               }
