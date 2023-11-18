@@ -12,10 +12,11 @@
 
 ## Table of Content
 
-- Features & Todo
-- Usage
-- Installation
-- Built With
+- [Features & Todo](#features--todo)
+- [Usage](#usage)
+- [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Built With](#built-with)
 
 ## Features & Todo
 
