@@ -21,7 +21,6 @@
 ## Features & Todo
 
 Features:
-
 - Responsive
 - Light Mode(default)/Dark Mode
 - 10-Panel Grid
@@ -33,7 +32,6 @@ Features:
   - comic-diffusion: Added because the default one was not working or working very slow
 
 Todo:
-
 - [ ] Add more layouts
 - [ ] More customisable speech bubbles
 - [ ] Pages
