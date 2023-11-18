@@ -11,8 +11,6 @@ import ColorSchemeToggle from "./components/ColorSchemeToggle";
 import Create from "./Create.jsx";
 import "./index.css";
 import Share from "./Share.jsx";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -63,18 +61,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <CssBaseline />
         <ColorSchemeToggle />
         <RouterProvider router={router} />
-        {/* <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        /> */}
       </CssVarsProvider>
     </StyledEngineProvider>
   </React.StrictMode>
