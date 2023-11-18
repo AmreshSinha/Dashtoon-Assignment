@@ -11,6 +11,7 @@ import ColorSchemeToggle from "./components/ColorSchemeToggle";
 import Create from "./Create.jsx";
 import "./index.css";
 import Share from "./Share.jsx";
+import NoteInfo from "./components/NoteInfo";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <CssBaseline />
         <ColorSchemeToggle />
         <RouterProvider router={router} />
+        <NoteInfo />
       </CssVarsProvider>
     </StyledEngineProvider>
   </React.StrictMode>
